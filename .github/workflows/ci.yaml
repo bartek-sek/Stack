@@ -70,5 +70,15 @@ jobs:
             -   name: Run PHPUnit
                 run: vendor/bin/phpunit
 
+            - name: "Restrict packages' versions"
+              run: |
+                  (cd src/TwigHooks/ && composer global config --no-plugins allow-plugins.symfony/flex true)
+                  (cd src/TwigHooks/ && composer global config --no-plugins allow-plugins.symfony/runtime true)
+                  (cd src/TwigHooks/ && composer global require --no-progress --no-scripts --no-plugins "symfony/flex")
+                  (cd src/TwigHooks/ && composer config extra.symfony.require "${{ matrix.symfony }}")
+
+            -   name: "Install dependencies (Twig Hooks)"
+                run: (cd src/TwigHooks/ && composer update --no-interaction --no-scripts)
+
             -   name: Run PHPUnit (Twig Hooks)
-                run: vendor/bin/phpunit -c src/TwigHooks/phpunit.xml.dist
+                run: (cd src/TwigHooks/ && vendor/bin/phpunit)
