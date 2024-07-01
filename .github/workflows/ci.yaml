@@ -70,7 +70,7 @@ jobs:
             -   name: Run PHPUnit
                 run: vendor/bin/phpunit
 
-            - name: "Restrict packages' versions"
+            - name: "Restrict packages' versions (Twig Hooks)"
               run: |
                   (cd src/TwigHooks/ && composer global config --no-plugins allow-plugins.symfony/flex true)
                   (cd src/TwigHooks/ && composer global config --no-plugins allow-plugins.symfony/runtime true)
