@@ -9,11 +9,8 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 use Symfony\Component\HttpKernel\Bundle\AbstractBundle;
 
-final class AdminUiBundle extends AbstractBundle
+final class SyliusAdminUiBundle extends AbstractBundle
 {
-    /** @var string */
-    protected string $name = 'SyliusAdminUi';
-
     public function getPath(): string
     {
         if (!isset($this->path)) {
