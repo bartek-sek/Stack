@@ -4,13 +4,40 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
+use App\Grid\BookGrid;
 use App\Repository\BookRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Sylius\Component\Resource\Annotation\SyliusCrudRoutes;
 use Sylius\Component\Resource\Model\ResourceInterface;
 use Sylius\Resource\Metadata\AsResource;
+use Sylius\Resource\Metadata\Create;
+use Sylius\Resource\Metadata\Index;
+use Sylius\Resource\Metadata\Update;
 
 #[ORM\Entity(repositoryClass: BookRepository::class)]
-#[AsResource]
+#[AsResource(
+    section: 'admin',
+    templatesDir: '@SyliusAdminUi/crud',
+    routePrefix: '/admin',
+    operations: [
+        new Create(),
+        new Update(),
+        new Index(grid: BookGrid::class),
+    ],
+)]
+#[SyliusCrudRoutes(
+    alias: 'app.book',
+    path: '/admin/legacy/books',
+    section: 'admin_legacy',
+    redirect: 'update',
+    templates: '@SyliusAdminUi/crud',
+    grid: 'app_book',
+    vars: [
+        'all' => [
+            'subheader' => 'app.ui.manage_your_books',
+        ],
+    ],
+)]
 class Book implements ResourceInterface
 {
     #[ORM\Id]

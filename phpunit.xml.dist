@@ -18,6 +18,10 @@
     </php>
 
     <testsuites>
+        <testsuite name="Main Test Suite">
+            <directory>tests</directory>
+        </testsuite>
+
         <testsuite name="TwigExtra Test Suite">
             <directory>src/TwigExtra/tests</directory>
         </testsuite>
