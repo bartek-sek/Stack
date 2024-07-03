@@ -1,0 +1,12 @@
+sylius:
+    ui:
+        actions: Actions
+        cancel: Cancel
+        create: Create
+        dashboard: Dashboard
+        delete: Delete
+        edit: Edit
+        filters: Filters
+        new: New
+        show: Show
+        update: Update

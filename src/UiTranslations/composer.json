@@ -1,0 +1,13 @@
+{
+  "name": "sylius/ui-translations",
+  "type": "library",
+  "autoload": {
+    "psr-4": {
+      "Sylius\\UiTranslations\\": "src/"
+    }
+  },
+  "require": {
+    "php": "^8.1",
+    "symfony/http-kernel": "^6.4 || ^7.0"
+  }
+}
